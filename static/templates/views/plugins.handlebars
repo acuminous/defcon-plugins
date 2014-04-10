@@ -1,0 +1,40 @@
+<div class="container">
+    <form onsubmit="return false;" class="form-inline tableFilter">
+        <div class="form-group">
+            <label for=filter">Search&nbsp;</label>
+            <input id="filter" type="text" class="form-control" placeholder="search text">        
+        </div>    
+    </form>
+    <table class="table table-condensed table-hover plugins" data-page-size="{{config.pageSize}}" data-limit-navigation="{{config.pages}}" data-filter="#filter">
+        <thead>
+            <th class="plugin" data-sort-initial="true">Plugin</th>
+            <th class="description">Description</th>
+            <th class="installed">Installed</th>
+        </thead>
+        <tbody>
+            {{#each defcon.plugins}}
+            <tr>
+                <td class="plugin">
+                    {{#if repositoryUrl}}<a href="{{repositoryUrl}}" title="{{repositoryUrl}}">{{/if}}
+                    {{id}}
+                    {{#if repositoryUrl}}</a>{{/if}}
+                </td>
+                <td class="description">{{description}}</td>
+                <td class="version">{{version}}</td>
+            </tr>
+            {{else}}
+                <tr>                
+                    <td colspan="4">There are no plugins</td>
+                </tr>
+            {{/each}}            
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-center">
+                    <ul class="pagination pagination-centered hide-if-no-paging"></ul>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
